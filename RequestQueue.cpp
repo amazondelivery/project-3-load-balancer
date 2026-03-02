@@ -9,11 +9,7 @@ public:
     }
 
     void push(Request req) {
-        if (queue.size() >= capacity) {
-
-        } else {
-            queue.push(req);
-        }
+        queue.push(req);
     }
 
     Request pop() {
