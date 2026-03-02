@@ -9,17 +9,17 @@ WebServer::WebServer(int id) {
 void WebServer::process(Request req) {
     remainingTime = req.time;
 
-    std::cout << "WebServer " << serverID << " just took on new request. Webserver" << serverID << " will be processing request for " << remainingTime << " more ticks..." << std::endl;
+    std::cout << "Web Server " << serverID << " just took on new request. Web server " << serverID << " will be processing request for " << remainingTime << " more ticks..." << std::endl;
 }
 
 void WebServer::tick() {
     if (remainingTime > 0) {
         remainingTime--;
         if (remainingTime != 0) {
-            std::cout << "WebServer " << serverID << " is processing, remaining time: " << remainingTime << "..." << std::endl;
+            std::cout << "Web Server " << serverID << " is processing, remaining time: " << remainingTime << "..." << std::endl;
         }
     } else {
-        std::cout << "WebServer " << serverID << " is available..." << std::endl;
+        std::cout << "Web Server " << serverID << " is available..." << std::endl;
     }
 }
 

@@ -4,18 +4,20 @@
 #include <vector>
 #include "WebServer.h"
 #include "RequestQueue.h"
+#include <string>
 
 class LoadBalancer {
 public:
     LoadBalancer(RequestQueue* initialQueue, int initialServers);
-    void tick();
     ~LoadBalancer();
+
+    void tick();
+    bool consultFirewall(std::string ip);
 
 private:
     RequestQueue* queue;
     std::vector<WebServer*> servers;
     int time;
-    bool consultFirewall(string ip);
 };
 
 #endif

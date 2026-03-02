@@ -1,6 +1,8 @@
 #include "LoadBalancer.h"
-#include <iostream>
 #include <string>
+#include <iostream>
+#include <sstream>
+using namespace std;
 
 LoadBalancer::LoadBalancer(RequestQueue* initialQueue, int initialServers) {
     queue = initialQueue;
@@ -49,5 +51,25 @@ void LoadBalancer::tick() {
 }
 
 bool LoadBalancer::consultFirewall(string ip) {
+    std::stringstream ss(ip);
+    std::string segment;
+    int parts[4];
+    int i = 0;
 
+    while (std::getline(ss, segment, '.') && i < 4) {
+        parts[i++] = std::stoi(segment);
+    }
+
+    if (i != 4) return false;
+
+    int A = parts[0];
+    int B = parts[1];
+
+    if ((A == 192 && B == 168) ||    // 192.168.x.x
+        (A == 10) ||                  // 10.x.x.x
+        (A == 172 && B >= 16 && B <= 31)) {  // 172.16.x.x → 172.31.x.x
+        return true;
+    }
+
+    return false;
 }
