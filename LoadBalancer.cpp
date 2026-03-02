@@ -27,8 +27,14 @@ void LoadBalancer::tick() {
 
     for (int i = 0; i < servers.size(); i++) {
         servers[i]->tick();
-        if (!servers[i]->isProcessing() && !queue->empty()) {
+
+        while (!servers[i]->isProcessing() && !queue->empty()) {
             Request nextRequest = queue->pop();
+            if (consultFirewall(nextRequest.ipIn)) {
+                std::cout << "ISRAELI CYBERINTELLIGENCE THREAT DETECTED! "
+                        << "DISCARDING THIS PACKET" << std::endl;
+                continue;
+            }
             servers[i]->process(nextRequest);
         }
     }
@@ -50,7 +56,7 @@ void LoadBalancer::tick() {
     }
 }
 
-bool LoadBalancer::consultFirewall(string ip) {
+bool LoadBalancer::consultFirewall(std::string ip) {
     std::stringstream ss(ip);
     std::string segment;
     int parts[4];
@@ -64,10 +70,18 @@ bool LoadBalancer::consultFirewall(string ip) {
 
     int A = parts[0];
     int B = parts[1];
+    int C = parts[2];
+    int D = parts[3];
 
-    if ((A == 192 && B == 168) ||    // 192.168.x.x
-        (A == 10) ||                  // 10.x.x.x
-        (A == 172 && B >= 16 && B <= 31)) {  // 172.16.x.x → 172.31.x.x
+    if (
+        (A == 192 && B == 168) ||              // 192.168.x.x
+        (A == 10) ||                            // 10.x.x.x
+        (A == 172 && B >= 16 && B <= 31) ||     // 172.16.x.x → 172.31.x.x
+        (A < 20) ||
+        (A == 20 && B < 40) ||
+        (A == 20 && B == 40 && C < 60) ||
+        (A == 20 && B == 40 && C == 60 && D <= 80)
+    ) {
         return true;
     }
 
