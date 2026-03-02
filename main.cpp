@@ -14,8 +14,21 @@ int main() {
 
     RequestQueue* queue = new RequestQueue(numServers * 100);
     LoadBalancer lb(queue, numServers);
+    
+    const string BLUE = "\033[34m";
+    const string RESET = "\033[0m";
 
     for (int i = 0; i < secondsRunningLoadBalancer; i++) {
+        cout << "" << endl;
+        cout << BLUE 
+             << "LOG: Clock Cycle #" << i + 1 
+             << ". There are " << queue->size() 
+             << " remaining Requests waiting to be processed"
+             << RESET << endl;
+
+        cout << BLUE
+             << "--------------------------------------------------------------"
+             << RESET << endl;
         lb.tick();
     }
 

@@ -15,6 +15,7 @@ private:
     RequestQueue* queue;
     std::vector<WebServer*> servers;
     int time;
+    bool consultFirewall(string ip);
 };
 
 #endif

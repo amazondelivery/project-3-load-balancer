@@ -6,9 +6,10 @@
 class WebServer {
 private:
     int remainingTime;
+    int serverID;
 
 public:
-    WebServer();
+    WebServer(int id);
     void process(Request req);
     void tick();
     bool isProcessing();
