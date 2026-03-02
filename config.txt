@@ -1,0 +1,2 @@
+# choose "load_balancer" or "switch" below
+type=load_balancer

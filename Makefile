@@ -1,6 +1,5 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -O2
-
 TARGET = main
 SOURCES = main.cpp Request.cpp RequestQueue.cpp WebServer.cpp LoadBalancer.cpp Switch.cpp
 OBJECTS = $(SOURCES:.cpp=.o)

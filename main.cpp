@@ -1,12 +1,13 @@
 #include <iostream>
+#include <fstream>
 #include "RequestQueue.h"
 #include "LoadBalancer.h"
 #include "Switch.h"
 
 using namespace std;
 
-/*
-int main() {
+
+int loadbalance() {
     const string PURPLE = "\033[35m";
     const string GREEN = "\033[32m";
     const string RESET = "\033[0m";
@@ -44,9 +45,8 @@ int main() {
     delete queue;
     return 0;
 }
-*/
 
-int main() {
+int switch_mode() {
     const string PURPLE = "\033[35m";
     const string GREEN = "\033[32m";
     const string RESET = "\033[0m";
@@ -88,4 +88,33 @@ int main() {
 
     delete queue;
     return 0;
+}
+
+int main() {
+    string type;
+    ifstream config("config.txt");
+    if (!config) {
+        cerr << "Could not open config.txt" << endl;
+        return 1;
+    }
+
+    string line;
+    while (getline(config, line)) {
+        if (line.empty() || line[0] == '#') continue;
+        if (line.find("type=") == 0) {
+            type = line.substr(5);                 
+            if (!type.empty() && type.back() == '\r')
+                type.pop_back();
+        }
+    }
+
+    cerr << "DEBUG type='" << type << endl;
+    if (type == "load_balancer") {
+        return loadbalance();
+    } else if (type == "switch") {
+        return switch_mode();
+    } else {
+        cerr << "Invalid type in config.txt: " << type << endl;
+        return 1;
+    }
 }
