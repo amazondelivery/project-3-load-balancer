@@ -1,4 +1,5 @@
 #include <iostream>
+#include <WebServer.h>
 #include <RequestQueue.h>
 
 using namespace std;
@@ -12,4 +13,8 @@ int main() {
     cin >> secondsRunningLoadBalancer;
 
     RequestQueue* queue = new RequestQueue(numServers * 100);
+    WebServer* web_servers = new WebServer[numServers];
+    for (int i = 0; i < numServers; i++) {
+        web_servers[i] = WebServer();
+    }
 }
