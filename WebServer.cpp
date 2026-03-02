@@ -1,6 +1,11 @@
+#include <Request.h>
 class WebServer {
-    public:
-    void action() {
-        return;
+public:
+    WebServer() {
+        
+    }
+
+    void process(Request req) {
+
     }
 };

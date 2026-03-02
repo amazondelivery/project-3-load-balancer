@@ -3,15 +3,12 @@
 using namespace std;
 
 class RequestQueue {
-    public:
-    queue<Request> queue;
-    int capacity;
-
-    RequestQueue::RequestQueue(int capacity) {
+public:
+    RequestQueue(int capacity) {
         this->capacity = capacity;
     }
 
-    void RequestQueue::push(Request req) {
+    void push(Request req) {
         if (queue.size() >= capacity) {
 
         } else {
@@ -19,7 +16,17 @@ class RequestQueue {
         }
     }
 
-    Request RequestQueue::pop() {
-
+    Request pop() {
+        Request frontRequest = queue.front();
+        queue.pop();
+        return frontRequest;
     }
+
+    int size() {
+        return queue.size();
+    }
+
+private:
+    queue<Request> queue;
+    int capacity;
 };
