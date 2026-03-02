@@ -1,6 +1,6 @@
 #include <iostream>
-#include <WebServer.h>
 #include <RequestQueue.h>
+#include <LoadBalancer.h>
 
 using namespace std;
 
@@ -13,8 +13,14 @@ int main() {
     cin >> secondsRunningLoadBalancer;
 
     RequestQueue* queue = new RequestQueue(numServers * 100);
-    WebServer* web_servers = new WebServer[numServers];
-    for (int i = 0; i < numServers; i++) {
-        web_servers[i] = WebServer();
+    LoadBalancer lb(queue, numServers);
+
+    for (int i = 0; i < secondsRunningLoadBalancer; i++) {
+        lb.tick();
     }
+    
+    cout << "Remaining requests in queue: " << queue->size() << endl;
+
+    delete queue;
+    return 0;
 }

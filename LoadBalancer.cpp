@@ -17,19 +17,23 @@ public:
 
     void tick() {
         for (int i = 0; i < servers.size(); i++) {
-            Request nextRequest = queue->pop();
-            servers[i].process(nextRequest);
-            if (queue->size() < (50 * servers.size())) {
-                servers.pop_back();
-                return;
-            } else if (queue->size() > (80 * servers.size())) {
-                servers.push_back(WebServer());
-                return;
+            servers[i].tick();
+
+            if (!servers[i].isProcessing() && !queue->empty()) {
+                Request nextRequest = queue->pop();
+                servers[i].process(nextRequest);
             }
+        }
+
+        if (queue->size() < (50 * servers.size()) && !servers.empty()) {
+            servers.pop_back();
+        } else if (queue->size() > (80 * servers.size())) {
+            servers.push_back(WebServer());
         }
     }
 
 private:
     RequestQueue* queue;
     vector<WebServer> servers;
+    int time = 0;
 };

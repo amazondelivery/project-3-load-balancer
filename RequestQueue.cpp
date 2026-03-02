@@ -4,12 +4,18 @@ using namespace std;
 
 class RequestQueue {
 public:
-    RequestQueue(int capacity) {
-        this->capacity = capacity;
+    RequestQueue(int size) {
+        for (int i = 0; i < size; i++) {
+            queue.push(Request());
+        }
     }
 
     void push(Request req) {
         queue.push(req);
+    }
+
+    bool empty() {
+        return queue.empty();
     }
 
     Request pop() {
@@ -24,5 +30,4 @@ public:
 
 private:
     queue<Request> queue;
-    int capacity;
 };

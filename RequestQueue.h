@@ -5,5 +5,8 @@ class RequestQueue {
     public:
     RequestQueue(int capacity);
     Request pop();
+    void push();
+    bool empty();
     int size();
+
 };
