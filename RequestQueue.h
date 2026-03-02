@@ -10,6 +10,7 @@ public:
     void push(Request req);
     bool empty() const;
     Request pop();
+    Request peek();
     int size() const;
 
 private:

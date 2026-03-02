@@ -21,6 +21,11 @@ Request RequestQueue::pop() {
     return frontRequest;
 }
 
+Request RequestQueue::peek() {
+    Request req = queue.front();
+    return req;
+}
+
 int RequestQueue::size() const {
     return queue.size();
 }

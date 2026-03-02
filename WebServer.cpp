@@ -6,6 +6,12 @@ WebServer::WebServer(int id) {
     serverID = id;
 }
 
+WebServer::WebServer(int id, char type) {
+    remainingTime = 0;
+    serverID = id;
+    this->type = type;
+}
+
 void WebServer::process(Request req) {
     remainingTime = req.time;
 
