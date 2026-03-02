@@ -4,9 +4,6 @@
 #include <vector>
 #include "WebServer.h"
 #include "RequestQueue.h"
-#include "Request.h"
-
-using namespace std;
 
 class LoadBalancer {
 public:
@@ -15,7 +12,8 @@ public:
 
 private:
     RequestQueue* queue;
-    vector<WebServer> servers;
+    std::vector<WebServer> servers;
+    int time;
 };
 
 #endif

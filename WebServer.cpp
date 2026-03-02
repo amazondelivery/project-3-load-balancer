@@ -1,22 +1,19 @@
-#include <Request.h>
-class WebServer {
-private:
-    int remainingTime = 0;
+#include "WebServer.h"
 
-public:
-    WebServer() {}
+WebServer::WebServer() {
+    remainingTime = 0;
+}
 
-    void process(Request req) {
-        remainingTime = req.time;
+void WebServer::process(Request req) {
+    remainingTime = req.time;
+}
+
+void WebServer::tick() {
+    if (remainingTime > 0) {
+        remainingTime--;
     }
+}
 
-    void tick() {
-        if (remainingTime > 0) {
-            remainingTime--;
-        }
-    }
-
-    bool isProcessing() {
-        return remainingTime > 0;
-    }
-};
+bool WebServer::isProcessing() {
+    return remainingTime > 0;
+}

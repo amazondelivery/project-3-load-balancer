@@ -1,6 +1,6 @@
 #include <iostream>
-#include <RequestQueue.h>
-#include <LoadBalancer.h>
+#include "RequestQueue.h"
+#include "LoadBalancer.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main() {
     for (int i = 0; i < secondsRunningLoadBalancer; i++) {
         lb.tick();
     }
-    
+
     cout << "Remaining requests in queue: " << queue->size() << endl;
 
     delete queue;
