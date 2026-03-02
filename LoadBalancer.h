@@ -9,10 +9,11 @@ class LoadBalancer {
 public:
     LoadBalancer(RequestQueue* initialQueue, int initialServers);
     void tick();
+    ~LoadBalancer();
 
 private:
     RequestQueue* queue;
-    std::vector<WebServer> servers;
+    std::vector<WebServer*> servers;
     int time;
 };
 

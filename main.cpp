@@ -9,7 +9,7 @@ int main() {
     int secondsRunningLoadBalancer;
     cout << "Enter number of servers: ";
     cin >> numServers;
-    cout << "Enter amount of time (in seconds) to run load balancer: ";
+    cout << "Enter amount of time (in clock cycles) to run load balancer: ";
     cin >> secondsRunningLoadBalancer;
 
     RequestQueue* queue = new RequestQueue(numServers * 100);
