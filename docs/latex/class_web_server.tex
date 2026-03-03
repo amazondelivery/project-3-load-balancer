@@ -1,0 +1,111 @@
+\doxysection{Web\+Server Class Reference}
+\hypertarget{class_web_server}{}\label{class_web_server}\index{WebServer@{WebServer}}
+
+
+{\ttfamily \+\#include $<$Web\+Server.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_web_server_a5044757cd8574d3f62a7eec5d51fb00f}{Web\+Server}} (int id)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_web_server}{Web\+Server} with a given ID (no job type). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_web_server_abd706d76838766bf21d226807e430a1a}{Web\+Server}} (int id, char type)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_web_server}{Web\+Server} with a given ID and job type. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_web_server_a8f799a37100d02a19ab26fbf4ec644a2}{process}} (\doxymbox{\hyperlink{struct_request}{Request}} req)
+\begin{DoxyCompactList}\small\item\em Assigns a new \doxylink{struct_request}{Request} to this \doxylink{class_web_server}{Web\+Server} for processing. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_web_server_aa70cfd8749f4aee55c60e09a5f9211f7}{tick}} ()
+\begin{DoxyCompactList}\small\item\em Advances this \doxylink{class_web_server}{Web\+Server} by one clock cycle. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_web_server_a460e27b0cfb47bcaa68387993c0d6cde}{is\+Processing}} ()
+\begin{DoxyCompactList}\small\item\em Checks whether this \doxylink{class_web_server}{Web\+Server} is currently processing a \doxylink{struct_request}{Request}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_web_server_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_web_server_a5044757cd8574d3f62a7eec5d51fb00f}\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{WebServer()}{WebServer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_web_server_a5044757cd8574d3f62a7eec5d51fb00f} 
+Web\+Server::\+\+Web\+Server (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_web_server}{Web\+Server} with a given ID (no job type). 
+
+Used by \doxylink{class_load_balancer}{Load\+Balancer}, which handles all job types.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & int The unique identifier for this \doxylink{class_web_server}{Web\+Server}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_web_server_abd706d76838766bf21d226807e430a1a}\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{WebServer()}{WebServer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_web_server_abd706d76838766bf21d226807e430a1a} 
+Web\+Server::\+\+Web\+Server (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{char}]{type}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_web_server}{Web\+Server} with a given ID and job type. 
+
+Used by \doxylink{class_switch}{Switch}, which restricts servers to a specific job type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & int The unique identifier for this \doxylink{class_web_server}{Web\+Server}. \\
+\hline
+{\em type} & char The job type this server handles:\+ \textquotesingle{}P\textquotesingle{} (processing) or \textquotesingle{}S\textquotesingle{} (streaming). \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_web_server_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_web_server_a460e27b0cfb47bcaa68387993c0d6cde}\index{WebServer@{WebServer}!isProcessing@{isProcessing}}
+\index{isProcessing@{isProcessing}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{isProcessing()}{isProcessing()}}
+{\footnotesize\ttfamily \label{class_web_server_a460e27b0cfb47bcaa68387993c0d6cde} 
+bool Web\+Server::\+is\+Processing (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether this \doxylink{class_web_server}{Web\+Server} is currently processing a \doxylink{struct_request}{Request}. 
+
+\begin{DoxyReturn}{Returns}
+bool true if the server is busy, false if it is available. 
+\end{DoxyReturn}
+\Hypertarget{class_web_server_a8f799a37100d02a19ab26fbf4ec644a2}\index{WebServer@{WebServer}!process@{process}}
+\index{process@{process}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily \label{class_web_server_a8f799a37100d02a19ab26fbf4ec644a2} 
+void Web\+Server::\+process (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_request}{Request}}}]{req}{}\end{DoxyParamCaption})}
+
+
+
+Assigns a new \doxylink{struct_request}{Request} to this \doxylink{class_web_server}{Web\+Server} for processing. 
+
+Sets the remaining processing time based on the \doxylink{struct_request}{Request}\textquotesingle{}s duration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & \doxylink{struct_request}{Request} The \doxylink{struct_request}{Request} object to process. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_web_server_aa70cfd8749f4aee55c60e09a5f9211f7}\index{WebServer@{WebServer}!tick@{tick}}
+\index{tick@{tick}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily \label{class_web_server_aa70cfd8749f4aee55c60e09a5f9211f7} 
+void Web\+Server::\+tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Advances this \doxylink{class_web_server}{Web\+Server} by one clock cycle. 
+
+Decrements remaining\+Time if busy, or logs availability if idle. 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_web_server_8h}{Web\+Server.\+h}}\item 
+\doxymbox{\hyperlink{_web_server_8cpp}{Web\+Server.\+cpp}}\end{DoxyCompactItemize}

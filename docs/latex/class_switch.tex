@@ -1,0 +1,104 @@
+\doxysection{Switch Class Reference}
+\hypertarget{class_switch}{}\label{class_switch}\index{Switch@{Switch}}
+
+
+{\ttfamily \+\#include $<$Switch.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_switch_a7b8cf6398bf462b9f788091bbabf9441}{Switch}} (\doxymbox{\hyperlink{class_request_queue}{Request\+Queue}} \texorpdfstring{$\ast$}{*}initial\+Queue, int initial\+Servers, char type\+Char)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_switch}{Switch} and initializes its pool of typed Web\+Servers. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_switch_ac9e0d5810af5ea21572d5dd7248baed8}{\texorpdfstring{$\sim$}{\string~}\+Switch}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Frees all dynamically allocated \doxylink{class_web_server}{Web\+Server} instances. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_switch_a2a8d949b01cf1981c5364607550e8e99}{tick}} ()
+\begin{DoxyCompactList}\small\item\em Advances the \doxylink{class_switch}{Switch} by one clock cycle. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_switch_a14fd46569d7032be1c6bf8142dbc63e8}{consult\+Firewall}} (std::\+string ip)
+\begin{DoxyCompactList}\small\item\em Checks whether an IP address should be blocked by the firewall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_switch_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_switch_a7b8cf6398bf462b9f788091bbabf9441}\index{Switch@{Switch}!Switch@{Switch}}
+\index{Switch@{Switch}!Switch@{Switch}}
+\doxysubsubsection{\texorpdfstring{Switch()}{Switch()}}
+{\footnotesize\ttfamily \label{class_switch_a7b8cf6398bf462b9f788091bbabf9441} 
+Switch::\+\+Switch (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_request_queue}{Request\+Queue}} \texorpdfstring{$\ast$}{*}}]{initial\+Queue}{, }\item[{int}]{initial\+Servers}{, }\item[{char}]{type\+Char}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_switch}{Switch} and initializes its pool of typed Web\+Servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+Queue} & Request\+Queue\texorpdfstring{$\ast$}{*} Pointer to the shared \doxylink{class_request_queue}{Request\+Queue} to draw from. \\
+\hline
+{\em initial\+Servers} & int Number of Web\+Servers to create on startup. \\
+\hline
+{\em type\+Char} & char The job type this \doxylink{class_switch}{Switch} handles:\+ \textquotesingle{}P\textquotesingle{} (processing) or \textquotesingle{}S\textquotesingle{} (streaming). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_switch_ac9e0d5810af5ea21572d5dd7248baed8}\index{Switch@{Switch}!````~Switch@{\texorpdfstring{$\sim$}{\string~}Switch}}
+\index{````~Switch@{\texorpdfstring{$\sim$}{\string~}Switch}!Switch@{Switch}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Switch()}{\string~Switch()}}
+{\footnotesize\ttfamily \label{class_switch_ac9e0d5810af5ea21572d5dd7248baed8} 
+Switch::\+\texorpdfstring{$\sim$}{\string~}\+Switch (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. Frees all dynamically allocated \doxylink{class_web_server}{Web\+Server} instances. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_switch_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_switch_a14fd46569d7032be1c6bf8142dbc63e8}\index{Switch@{Switch}!consultFirewall@{consultFirewall}}
+\index{consultFirewall@{consultFirewall}!Switch@{Switch}}
+\doxysubsubsection{\texorpdfstring{consultFirewall()}{consultFirewall()}}
+{\footnotesize\ttfamily \label{class_switch_a14fd46569d7032be1c6bf8142dbc63e8} 
+bool Switch::\+consult\+Firewall (\begin{DoxyParamCaption}\item[{std::\+string}]{ip}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether an IP address should be blocked by the firewall. 
+
+Blocks the following ranges:\+
+\begin{DoxyItemize}
+\item 192.\+168.\+x.\+x (private)
+\item 10.\+x.\+x.\+x (private)
+\item 172.\+16.\+x.\+x through 172.\+31.\+x.\+x (private)
+\item Any IP below or equal to 20.\+40.\+60.\+80
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & std::\+string The IPv4 address to evaluate (e.\+g. "{}172.\+24.\+53.\+101"{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool true if the IP is blocked, false if it is allowed. 
+\end{DoxyReturn}
+\Hypertarget{class_switch_a2a8d949b01cf1981c5364607550e8e99}\index{Switch@{Switch}!tick@{tick}}
+\index{tick@{tick}!Switch@{Switch}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily \label{class_switch_a2a8d949b01cf1981c5364607550e8e99} 
+void Switch::\+tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Advances the \doxylink{class_switch}{Switch} by one clock cycle. 
+
+On each tick:\+
+\begin{DoxyItemize}
+\item Each \doxylink{class_web_server}{Web\+Server} is ticked.
+\item Idle servers peek at the front \doxylink{struct_request}{Request}; if it matches this \doxylink{class_switch}{Switch}\textquotesingle{}s job type and passes the firewall, it is popped and processed.
+\item If the front \doxylink{struct_request}{Request} does not match this \doxylink{class_switch}{Switch}\textquotesingle{}s type, the server stops pulling.
+\item Every 10 cycles, servers are added or removed based on queue size. 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_switch_8h}{Switch.\+h}}\item 
+\doxymbox{\hyperlink{_switch_8cpp}{Switch.\+cpp}}\end{DoxyCompactItemize}

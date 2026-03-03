@@ -1,0 +1,28 @@
+\doxysection{Switch.\+h}
+\hypertarget{_switch_8h_source}{}\label{_switch_8h_source}\doxymbox{\hyperlink{_switch_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SWITCH\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SWITCH\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_web_server_8h}{WebServer.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_request_queue_8h}{RequestQueue.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_switch_a7b8cf6398bf462b9f788091bbabf9441}{Switch}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \doxymbox{\hyperlink{class_switch_a7b8cf6398bf462b9f788091bbabf9441}{Switch}}(\doxymbox{\hyperlink{class_request_queue}{RequestQueue}}*\ initialQueue,\ \textcolor{keywordtype}{int}\ initialServers,\ \textcolor{keywordtype}{char}\ typeChar);}
+\DoxyCodeLine{00012\ \ \ \ \ \doxymbox{\hyperlink{class_switch_ac9e0d5810af5ea21572d5dd7248baed8}{\string~Switch}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_switch_a2a8d949b01cf1981c5364607550e8e99}{tick}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_switch_a14fd46569d7032be1c6bf8142dbc63e8}{consultFirewall}}(std::string\ ip);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{class_request_queue}{RequestQueue}}*\ queue;}
+\DoxyCodeLine{00018\ \ \ \ \ std::vector<WebServer*>\ servers;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ time;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{char}\ type;}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

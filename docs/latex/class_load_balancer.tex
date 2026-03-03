@@ -1,0 +1,96 @@
+\doxysection{Load\+Balancer Class Reference}
+\hypertarget{class_load_balancer}{}\label{class_load_balancer}\index{LoadBalancer@{LoadBalancer}}
+
+
+{\ttfamily \+\#include $<$Load\+Balancer.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_load_balancer_ac7d7e6aba5e00343e2d44d613544c192}{Load\+Balancer}} (\doxymbox{\hyperlink{class_request_queue}{Request\+Queue}} \texorpdfstring{$\ast$}{*}initial\+Queue, int initial\+Servers)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_load_balancer}{Load\+Balancer} and initializes its pool of Web\+Servers. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}{\texorpdfstring{$\sim$}{\string~}\+Load\+Balancer}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Frees all dynamically allocated \doxylink{class_web_server}{Web\+Server} instances. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}{tick}} ()
+\begin{DoxyCompactList}\small\item\em Advances the \doxylink{class_load_balancer}{Load\+Balancer} by one clock cycle. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_load_balancer_a1f30f848d993ec4e773c26ad7d19cab2}{consult\+Firewall}} (std::\+string ip)
+\begin{DoxyCompactList}\small\item\em Checks whether an IP address should be blocked by the firewall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_load_balancer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_load_balancer_ac7d7e6aba5e00343e2d44d613544c192}\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{LoadBalancer()}{LoadBalancer()}}
+{\footnotesize\ttfamily \label{class_load_balancer_ac7d7e6aba5e00343e2d44d613544c192} 
+Load\+Balancer::\+\+Load\+Balancer (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_request_queue}{Request\+Queue}} \texorpdfstring{$\ast$}{*}}]{initial\+Queue}{, }\item[{int}]{initial\+Servers}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_load_balancer}{Load\+Balancer} and initializes its pool of Web\+Servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+Queue} & Pointer to the \doxylink{class_request_queue}{Request\+Queue} this \doxylink{class_load_balancer}{Load\+Balancer} will draw from. \\
+\hline
+{\em initial\+Servers} & int Number of Web\+Servers to create on startup. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}\index{LoadBalancer@{LoadBalancer}!````~LoadBalancer@{\texorpdfstring{$\sim$}{\string~}LoadBalancer}}
+\index{````~LoadBalancer@{\texorpdfstring{$\sim$}{\string~}LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LoadBalancer()}{\string~LoadBalancer()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80} 
+Load\+Balancer::\+\texorpdfstring{$\sim$}{\string~}\+Load\+Balancer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. Frees all dynamically allocated \doxylink{class_web_server}{Web\+Server} instances. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_load_balancer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_load_balancer_a1f30f848d993ec4e773c26ad7d19cab2}\index{LoadBalancer@{LoadBalancer}!consultFirewall@{consultFirewall}}
+\index{consultFirewall@{consultFirewall}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{consultFirewall()}{consultFirewall()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a1f30f848d993ec4e773c26ad7d19cab2} 
+bool Load\+Balancer::\+consult\+Firewall (\begin{DoxyParamCaption}\item[{std::\+string}]{ip}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether an IP address should be blocked by the firewall. 
+
+Blocks the following ranges:\+
+\begin{DoxyItemize}
+\item 192.\+168.\+x.\+x
+\item 10.\+x.\+x.\+x
+\item 172.\+16.\+x.\+x through 172.\+31.\+x.\+x
+\item Any IP below or equal to 20.\+40.\+60.\+80
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & std::\+string The IPv4 address to evaluate (e.\+g. "{}192.\+168.\+1.\+1"{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool true if the IP is blocked, false if it is allowed. 
+\end{DoxyReturn}
+\Hypertarget{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}\index{LoadBalancer@{LoadBalancer}!tick@{tick}}
+\index{tick@{tick}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b} 
+void Load\+Balancer::\+tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Advances the \doxylink{class_load_balancer}{Load\+Balancer} by one clock cycle. 
+
+On each tick:\+ -\/Each \doxylink{class_web_server}{Web\+Server} is ticked. -\/Idle servers pull the next \doxylink{struct_request}{Request} from the queue (firewall-\/checked) -\/Every 10 cycles, servers are added or removed based on queue size. 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_load_balancer_8h}{Load\+Balancer.\+h}}\item 
+\doxymbox{\hyperlink{_load_balancer_8cpp}{Load\+Balancer.\+cpp}}\end{DoxyCompactItemize}

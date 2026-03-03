@@ -25,18 +25,21 @@ int loadbalance() {
     RequestQueue* queue = new RequestQueue(numServers * 100);
     LoadBalancer lb(queue, numServers);
 
-    cout << PURPLE << "We will be starting with " << numServers * 100 << " requests" << RESET << endl;
+    cout << PURPLE << "We will be starting with " << numServers * 100 << " requests in the queue" << RESET << endl;
     for (int i = 0; i < secondsRunningLoadBalancer; i++) {
+        if (queue->empty()) {
+            cout << PURPLE << "Queue is empty! Stopping early at clock cycle " << i + 1 << RESET << endl;
+            break;
+        }
         cout << "" << endl;
         cout << BLUE 
-             << "LOG: Clock Cycle #" << i + 1 
-             << ". There are " << queue->size() 
-             << " remaining Requests waiting to be processed"
-             << RESET << endl;
-
+            << "LOG: Clock Cycle #" << i + 1 
+            << ". There are " << queue->size() 
+            << " remaining Requests waiting to be processed"
+            << RESET << endl;
         cout << BLUE
-             << "--------------------------------------------------------------"
-             << RESET << endl;
+            << "--------------------------------------------------------------"
+            << RESET << endl;
         lb.tick();
     }
 
@@ -65,20 +68,22 @@ int switch_mode() {
     Switch streamingSwitch(queue, numServers, 'S');
     Switch processingSwitch(queue, numServers, 'P');
 
-    cout << PURPLE << "We will be starting with " << numServers * 100 << " requests" << RESET << endl;
+    cout << PURPLE << "We will be starting with " << numServers * 100 << " requests in the queue" << RESET << endl;
 
     for (int i = 0; i < secondsRunningSwitches; i++) {
+        if (queue->empty()) {
+            cout << PURPLE << "Queue is empty! Stopping early at clock cycle " << i + 1 << RESET << endl;
+            break;
+        }
         cout << endl;
         cout << BLUE
-             << "LOG: Clock Cycle #" << i + 1
-             << ". Remaining Requests in Queue: " << queue->size()
-             << RESET << endl;
+            << "LOG: Clock Cycle #" << i + 1
+            << ". Remaining Requests in Queue: " << queue->size()
+            << RESET << endl;
         cout << BLUE << "--------------------------------------------------------------" << RESET << endl;
-
         cout << BLUE << "STREAMING SWITCH (S) Tick:" << RESET << endl;
         streamingSwitch.tick();
         cout << BLUE << "--------------------------------------------------------------" << RESET << endl;
-
         cout << BLUE << "PROCESSING SWITCH (P) Tick:" << RESET << endl;
         processingSwitch.tick();
         cout << BLUE << "==============================================================" << RESET << endl;
